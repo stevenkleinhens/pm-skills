@@ -2,6 +2,8 @@
 
 This branch adapts PM Skills for native Codex plugin usage while preserving the upstream Claude-oriented structure.
 
+Detailed project-specific documentation lives in `docs/codex-port.md`.
+
 ## Scope
 
 Initial test scope:
@@ -39,4 +41,3 @@ For each ported plugin:
 - Command workflows that matter in Codex have a corresponding workflow skill.
 - Workflow skills reference command files for detailed steps instead of duplicating large command bodies.
 - Any file writes require explicit user approval.
-
