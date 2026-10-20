@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added Cursor plugin manifests: a root `.cursor-plugin/marketplace.json` and a `.cursor-plugin/plugin.json` in every plugin, mirroring the Claude manifests. Claude manifests are unchanged.
+- Added an isolated Codex distribution for all nine plugins. Each package exposes one explicit-only `$pm-*` entrypoint while retaining all 69 frameworks and 42 workflows as internal references; safe Codex adapters keep `pm-ai-shipping` check-only until writes, fixes, or delegation are explicitly approved.
 
 ## v2.2.0 — 2026-10-10
 

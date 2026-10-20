@@ -81,11 +81,11 @@ claude plugin install pm-ai-shipping@pm-skills
 
 ### Codex CLI (OpenAI)
 
-Codex reads the same plugin marketplace file as Claude Code, so you can install PM Skills natively — no conversion or file-copying needed:
+The `codex/pm-skills-all-explicit` branch in Steven's fork is a Codex-specific distribution. It keeps the original frameworks and workflows as internal references but exposes only one explicit entrypoint per plugin:
 
 ```bash
 # Step 1: Add the marketplace
-codex plugin marketplace add phuryn/pm-skills
+codex plugin marketplace add stevenkleinhens/pm-skills --ref codex/pm-skills-all-explicit
 
 # Step 2: Install the plugins you want
 codex plugin add pm-toolkit@pm-skills
@@ -99,17 +99,13 @@ codex plugin add pm-execution@pm-skills
 codex plugin add pm-ai-shipping@pm-skills
 ```
 
-**What you get:** every skill (the PM frameworks), available to Codex and invocable by name. Install whole plugins rather than cherry-picking individual skills — a workflow usually relies on several skills that ship together.
+**What you get:** nine explicit-only skills — `$pm-toolkit`, `$pm-product-strategy`, `$pm-product-discovery`, `$pm-market-research`, `$pm-data-analytics`, `$pm-marketing-growth`, `$pm-go-to-market`, `$pm-execution`, and `$pm-ai-shipping`. Invoke one when you want that PM domain; installing or enabling a plugin does not make it trigger implicitly.
 
-**What's different from Claude Code:** the `/slash` commands (`/discover`, `/write-prd`, …) install but don't run as Codex slash commands — Codex plugins don't expose commands. To run a workflow, just describe the steps in plain language, for example:
+**What's different from Claude Code:** the 42 `/slash` workflows and 69 framework skills are packaged as internal references, not registered as separate Codex skills. This avoids both automatic invocation and Codex's compatibility migration of Claude commands. For example:
 
-> Run product discovery on *[your idea]*: brainstorm options, map assumptions, prioritize the risky ones, then design experiments — pause between each step.
+> Use `$pm-product-discovery` to explore *[your idea]*, prioritize the risky assumptions, and propose experiments.
 
-**Optional — let Codex turn the workflows into skills.** Because the command files ship inside each installed plugin, you can ask Codex to convert the ones you use most:
-
-> Read the command files in the pm-execution plugin and create equivalent Codex skills for the workflows I use most often.
-
-This is a best-effort, model-driven conversion (some Claude-specific command syntax won't translate), but it's a quick way to get the guided workflows on Codex without leaving the CLI.
+`$pm-ai-shipping` is check-only by default. Repository writes, fixes, report files, agent-instruction changes, and delegated review require separate explicit approval.
 
 ### Other AI assistants (skills only)
 

@@ -70,7 +70,7 @@ class TestMarketplaceList(unittest.TestCase):
         for p in marketplace()["plugins"]:
             self.assertEqual(
                 p["source"],
-                f"./{p['name']}",
+                f"./codex-packages/{p['name']}",
                 f"plugin {p['name']} has source {p['source']}",
             )
 

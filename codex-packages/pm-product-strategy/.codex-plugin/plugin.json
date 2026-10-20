@@ -1,0 +1,40 @@
+{
+  "name": "pm-product-strategy",
+  "version": "2.2.0",
+  "description": "Product strategy skills for PMs: vision, strategy canvas, value propositions, lean canvas, business model canvas, SWOT, PESTLE, Ansoff Matrix, Porter's Five Forces, and monetization.",
+  "author": {
+    "name": "Paweł Huryn",
+    "email": "pawel@productcompass.pm",
+    "url": "https://www.productcompass.pm"
+  },
+  "homepage": "https://www.productcompass.pm",
+  "repository": "https://github.com/stevenkleinhens/pm-skills",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "strategy",
+    "vision",
+    "business-model",
+    "swot",
+    "competitive-analysis",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PM Product Strategy",
+    "shortDescription": "Explicit product strategy workflows",
+    "longDescription": "Develop product direction through strategy, value propositions, business models, market scans, pricing, and monetization.",
+    "developerName": "Paweł Huryn / Steven Kleinhens Codex Port",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Analysis",
+      "Planning"
+    ],
+    "websiteURL": "https://www.productcompass.pm",
+    "defaultPrompt": [
+      "Use $pm-product-strategy to develop and challenge the strategy for this product."
+    ],
+    "brandColor": "#0F766E"
+  }
+}

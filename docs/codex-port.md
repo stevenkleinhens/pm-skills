@@ -28,17 +28,16 @@ Every entrypoint has `allow_implicit_invocation: false`. Installing the marketpl
 
 ## Packaging Architecture
 
-Each plugin contains:
+The repository separates source and distribution:
 
-- the upstream `.claude-plugin/` and `.cursor-plugin/` metadata
-- an explicit Codex manifest at `.codex-plugin/plugin.json`
-- one registered Codex workflow under `codex-skills/<plugin-name>/`
-- the original `commands/` workflow sources
-- the original `skills/` framework instructions
+- the original `pm-*/commands/` and `pm-*/skills/` trees remain the upstream Claude-oriented sources
+- the marketplace on this branch points to isolated packages under `codex-packages/<plugin-name>/`
+- each package has one registered skill under `skills/<plugin-name>/`
+- the 69 frameworks are copied as internal `references/frameworks/*/GUIDE.md` files
+- the 42 workflows are copied as internal `references/workflows/*.md` files
+- installable packages contain no `commands/` directory, preventing Codex from auto-migrating Claude commands into extra visible skills
 
-The Codex manifest points only at `./codex-skills/`. The 69 upstream framework skills remain packaged references and are loaded selectively by the chosen workflow instead of becoming 69 automatic skill triggers.
-
-`scripts/generate_codex_port.py` regenerates all Codex manifests, entrypoints, and `agents/openai.yaml` files from the current upstream plugin metadata.
+The Codex manifest points only at `./skills/`. `scripts/generate_codex_port.py` regenerates the isolated packages, their manifests, entrypoints, metadata, and references from the current upstream sources.
 
 ## Operating Boundaries
 
@@ -46,6 +45,7 @@ The Codex manifest points only at `./codex-skills/`. The 69 upstream framework s
 - Keep facts, evidence, assumptions, recommendations, and decisions distinct.
 - `pm-toolkit` legal documents are drafts and require qualified legal review.
 - `pm-ai-shipping` defaults to check-only, cannot write or fix without explicit approval, and cannot dispatch subagents without explicit approval.
+- `pm-ai-shipping` uses dedicated safe Codex workflow adapters; it does not load the conflicting operational directions from the upstream Claude commands.
 
 ## Install
 
@@ -101,7 +101,7 @@ Validate an entrypoint with Skillzone's environment:
 ```bash
 /Users/skleinhens/Projects/skillzone/.venv/bin/python \
   /Users/skleinhens/.codex/skills/.system/skill-creator/scripts/quick_validate.py \
-  pm-market-research/codex-skills/pm-market-research
+  codex-packages/pm-market-research/skills/pm-market-research
 ```
 
 ## Rollback
@@ -109,15 +109,15 @@ Validate an entrypoint with Skillzone's environment:
 Each plugin can be removed independently:
 
 ```bash
-codex plugin remove pm-product-discovery
-codex plugin remove pm-product-strategy
-codex plugin remove pm-execution
-codex plugin remove pm-market-research
-codex plugin remove pm-data-analytics
-codex plugin remove pm-go-to-market
-codex plugin remove pm-marketing-growth
-codex plugin remove pm-toolkit
-codex plugin remove pm-ai-shipping
+codex plugin remove pm-product-discovery@pm-skills
+codex plugin remove pm-product-strategy@pm-skills
+codex plugin remove pm-execution@pm-skills
+codex plugin remove pm-market-research@pm-skills
+codex plugin remove pm-data-analytics@pm-skills
+codex plugin remove pm-go-to-market@pm-skills
+codex plugin remove pm-marketing-growth@pm-skills
+codex plugin remove pm-toolkit@pm-skills
+codex plugin remove pm-ai-shipping@pm-skills
 ```
 
 Remove the marketplace only after no installed plugin still depends on it:

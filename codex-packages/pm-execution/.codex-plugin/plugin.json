@@ -1,0 +1,45 @@
+{
+  "name": "pm-execution",
+  "version": "2.2.0",
+  "description": "Execution and product management skills: PRDs, OKRs, roadmaps, sprints, pre-mortems, stakeholder maps, user stories, prioritization frameworks, and more.",
+  "author": {
+    "name": "Paweł Huryn",
+    "email": "pawel@productcompass.pm",
+    "url": "https://www.productcompass.pm"
+  },
+  "homepage": "https://www.productcompass.pm",
+  "repository": "https://github.com/stevenkleinhens/pm-skills",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "execution",
+    "prd",
+    "okrs",
+    "roadmap",
+    "sprint",
+    "pre-mortem",
+    "user-stories",
+    "backlog",
+    "prioritization",
+    "agile",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PM Execution",
+    "shortDescription": "Explicit PM execution workflows",
+    "longDescription": "Translate accepted product direction into lean PRDs, backlog items, OKRs, roadmaps, sprints, risk reviews, tests, and release communication.",
+    "developerName": "Paweł Huryn / Steven Kleinhens Codex Port",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Analysis",
+      "Planning"
+    ],
+    "websiteURL": "https://www.productcompass.pm",
+    "defaultPrompt": [
+      "Use $pm-execution to turn this accepted product decision into an executable delivery artifact."
+    ],
+    "brandColor": "#7C3AED"
+  }
+}
