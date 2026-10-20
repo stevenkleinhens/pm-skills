@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM AI Shipping"
+  short_description: "Explicit AI shipping review workflows"
+  default_prompt: "Use $pm-ai-shipping to run a bounded check-only shipping review for this repository."
+policy:
+  allow_implicit_invocation: false

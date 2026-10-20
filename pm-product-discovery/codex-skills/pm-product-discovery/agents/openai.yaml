@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Product Discovery"
+  short_description: "Explicit product discovery workflows"
+  default_prompt: "Use $pm-product-discovery to run a focused discovery cycle for this product idea."
+policy:
+  allow_implicit_invocation: false

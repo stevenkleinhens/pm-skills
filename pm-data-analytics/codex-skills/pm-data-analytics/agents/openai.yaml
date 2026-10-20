@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Data Analytics"
+  short_description: "Explicit product analytics workflows"
+  default_prompt: "Use $pm-data-analytics to analyze this product dataset or formulate the required query."
+policy:
+  allow_implicit_invocation: false

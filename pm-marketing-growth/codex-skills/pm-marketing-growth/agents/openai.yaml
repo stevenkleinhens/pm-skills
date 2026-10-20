@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Marketing Growth"
+  short_description: "Explicit product marketing workflows"
+  default_prompt: "Use $pm-marketing-growth to develop positioning and growth options for this product."
+policy:
+  allow_implicit_invocation: false

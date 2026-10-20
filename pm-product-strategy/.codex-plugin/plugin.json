@@ -1,7 +1,7 @@
 {
   "name": "pm-product-strategy",
-  "version": "2.0.0",
-  "description": "Product strategy skills for vision, value propositions, business models, market scans, pricing, and monetization.",
+  "version": "2.2.0",
+  "description": "Product strategy skills for PMs: vision, strategy canvas, value propositions, lean canvas, business model canvas, SWOT, PESTLE, Ansoff Matrix, Porter's Five Forces, and monetization.",
   "author": {
     "name": "Paweł Huryn",
     "email": "pawel@productcompass.pm",
@@ -15,14 +15,15 @@
     "strategy",
     "vision",
     "business-model",
-    "pricing",
+    "swot",
+    "competitive-analysis",
     "codex"
   ],
-  "skills": "./skills/",
+  "skills": "./codex-skills/",
   "interface": {
     "displayName": "PM Product Strategy",
-    "shortDescription": "Strategy workflows for vision, value propositions, market scans, business models, and pricing.",
-    "longDescription": "Codex-native product strategy skills for turning product context into strategy canvases, value propositions, business model options, market scans, pricing strategy, monetization hypotheses, and defensible strategic choices.",
+    "shortDescription": "Explicit product strategy workflows",
+    "longDescription": "Develop product direction through strategy, value propositions, business models, market scans, pricing, and monetization.",
     "developerName": "Paweł Huryn / Steven Kleinhens Codex Port",
     "category": "Productivity",
     "capabilities": [
@@ -32,11 +33,8 @@
     ],
     "websiteURL": "https://www.productcompass.pm",
     "defaultPrompt": [
-      "Create a product strategy for this idea.",
-      "Design a value proposition for this segment.",
-      "Run a market scan for this product."
+      "Use $pm-product-strategy to develop and challenge the strategy for this product."
     ],
     "brandColor": "#0F766E"
   }
 }
-

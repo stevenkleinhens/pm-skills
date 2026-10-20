@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Go To Market"
+  short_description: "Explicit go-to-market workflows"
+  default_prompt: "Use $pm-go-to-market to design a focused route to market for this product."
+policy:
+  allow_implicit_invocation: false

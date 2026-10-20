@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Execution"
+  short_description: "Explicit PM execution workflows"
+  default_prompt: "Use $pm-execution to turn this accepted product decision into an executable delivery artifact."
+policy:
+  allow_implicit_invocation: false

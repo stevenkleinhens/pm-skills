@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Market Research"
+  short_description: "Explicit market research workflows"
+  default_prompt: "Use $pm-market-research to investigate this market question with evidence and clear assumptions."
+policy:
+  allow_implicit_invocation: false

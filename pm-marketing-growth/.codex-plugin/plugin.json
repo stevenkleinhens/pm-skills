@@ -1,0 +1,40 @@
+{
+  "name": "pm-marketing-growth",
+  "version": "2.2.0",
+  "description": "Product marketing and growth skills: marketing ideas, value proposition statements, North Star metrics, product naming, and positioning.",
+  "author": {
+    "name": "Paweł Huryn",
+    "email": "pawel@productcompass.pm",
+    "url": "https://www.productcompass.pm"
+  },
+  "homepage": "https://www.productcompass.pm",
+  "repository": "https://github.com/stevenkleinhens/pm-skills",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "marketing",
+    "growth",
+    "north-star",
+    "positioning",
+    "branding",
+    "codex"
+  ],
+  "skills": "./codex-skills/",
+  "interface": {
+    "displayName": "PM Marketing Growth",
+    "shortDescription": "Explicit product marketing workflows",
+    "longDescription": "Develop product positioning, value-proposition statements, marketing ideas, names, and North Star metrics.",
+    "developerName": "Paweł Huryn / Steven Kleinhens Codex Port",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Analysis",
+      "Planning"
+    ],
+    "websiteURL": "https://www.productcompass.pm",
+    "defaultPrompt": [
+      "Use $pm-marketing-growth to develop positioning and growth options for this product."
+    ],
+    "brandColor": "#BE185D"
+  }
+}

@@ -1,125 +1,127 @@
 # PM Skills Codex Port
 
-This fork adapts the PM Skills marketplace for Codex while preserving the upstream Claude-oriented structure.
+This fork adapts all nine PM Skills plugins for Codex while preserving the upstream Claude- and Cursor-oriented sources.
 
 ## Repository
 
 - Upstream: `https://github.com/phuryn/pm-skills`
 - Fork: `https://github.com/stevenkleinhens/pm-skills`
-- Branch: `codex-port/plugins-1-3`
+- Branch: `codex/pm-skills-all-explicit`
+- Upstream baseline: `v2.2.0` plus commit `07b34f64ee828df08953f505b7f747aef85ae7c6`
 - Local path in Skillzone: `upstream/pm-skills`
 
 ## Decision
 
-Use a fork, not a vendor copy.
+All nine plugins are available through Steven's fork, but Codex exposes exactly one explicit entrypoint per plugin:
 
-Rationale:
+- `$pm-product-discovery`
+- `$pm-product-strategy`
+- `$pm-execution`
+- `$pm-market-research`
+- `$pm-data-analytics`
+- `$pm-go-to-market`
+- `$pm-marketing-growth`
+- `$pm-toolkit`
+- `$pm-ai-shipping`
 
-- The repo is a full marketplace with 9 plugins, 68+ skills, and 42 command workflows.
-- We want to keep upstream structure and potentially pull upstream updates.
-- Codex adaptation touches plugin manifests and command-to-skill workflow behavior.
-- Reviewable commits and a branch are useful for ongoing port work.
+Every entrypoint has `allow_implicit_invocation: false`. Installing the marketplace does not authorize automatic PM workflow selection.
 
-Initial test scope:
+## Packaging Architecture
 
-- `pm-product-discovery`
-- `pm-product-strategy`
-- `pm-execution`
+Each plugin contains:
 
-The other plugins remain uninstalled until a workflow directly requires them.
+- the upstream `.claude-plugin/` and `.cursor-plugin/` metadata
+- an explicit Codex manifest at `.codex-plugin/plugin.json`
+- one registered Codex workflow under `codex-skills/<plugin-name>/`
+- the original `commands/` workflow sources
+- the original `skills/` framework instructions
 
-## Codex Changes
+The Codex manifest points only at `./codex-skills/`. The 69 upstream framework skills remain packaged references and are loaded selectively by the chosen workflow instead of becoming 69 automatic skill triggers.
 
-Added Codex plugin manifests:
+`scripts/generate_codex_port.py` regenerates all Codex manifests, entrypoints, and `agents/openai.yaml` files from the current upstream plugin metadata.
 
-- `pm-product-discovery/.codex-plugin/plugin.json`
-- `pm-product-strategy/.codex-plugin/plugin.json`
-- `pm-execution/.codex-plugin/plugin.json`
+## Operating Boundaries
 
-Added Codex workflow skills:
-
-- `pm-product-discovery/skills/product-discovery-workflows/SKILL.md`
-- `pm-product-strategy/skills/product-strategy-workflows/SKILL.md`
-- `pm-execution/skills/execution-workflows/SKILL.md`
-
-These workflow skills convert Claude slash-command workflows into natural-language Codex triggers.
-
-## Porting Rules
-
-- Preserve upstream files unless a Codex-specific change is necessary.
-- Keep `.claude-plugin` metadata.
-- Add `.codex-plugin/plugin.json` beside Claude metadata.
-- Treat `commands/*.md` as workflow source docs.
-- Add workflow skills that read command files and route to supporting skills.
-- Draft generated files in chat first; write files only after explicit approval.
-- Add dependent plugins only when a workflow actually requires a missing skill.
+- Draft artifacts in the conversation first; external writes need explicit approval.
+- Keep facts, evidence, assumptions, recommendations, and decisions distinct.
+- `pm-toolkit` legal documents are drafts and require qualified legal review.
+- `pm-ai-shipping` defaults to check-only, cannot write or fix without explicit approval, and cannot dispatch subagents without explicit approval.
 
 ## Install
 
-The installed marketplace currently points at Steven's fork branch:
+Configure Steven's fork branch as the marketplace:
 
 ```bash
-codex plugin marketplace add stevenkleinhens/pm-skills --ref codex-port/plugins-1-3
+codex plugin marketplace add stevenkleinhens/pm-skills --ref codex/pm-skills-all-explicit
 ```
 
-Installed plugins:
+Install all plugins:
 
 ```bash
 codex plugin add pm-product-discovery@pm-skills
 codex plugin add pm-product-strategy@pm-skills
 codex plugin add pm-execution@pm-skills
+codex plugin add pm-market-research@pm-skills
+codex plugin add pm-data-analytics@pm-skills
+codex plugin add pm-go-to-market@pm-skills
+codex plugin add pm-marketing-growth@pm-skills
+codex plugin add pm-toolkit@pm-skills
+codex plugin add pm-ai-shipping@pm-skills
 ```
 
-Rollback:
+Restart Codex Desktop after installation.
+
+## Per-Project Control
+
+Installed local-marketplace plugins can be enabled or disabled in a trusted project's `.codex/config.toml`:
+
+```toml
+[plugins."pm-product-discovery@pm-skills"]
+enabled = true
+
+[plugins."pm-ai-shipping@pm-skills"]
+enabled = false
+```
+
+This controls availability for that project. Invocation remains explicit even when a plugin is enabled.
+
+## Validation
+
+Run from `upstream/pm-skills`:
+
+```bash
+python3 scripts/generate_codex_port.py
+python3 -m unittest tests.test_codex_port tests.test_consistency
+python3 validate_plugins.py
+git diff --check
+```
+
+Validate an entrypoint with Skillzone's environment:
+
+```bash
+/Users/skleinhens/Projects/skillzone/.venv/bin/python \
+  /Users/skleinhens/.codex/skills/.system/skill-creator/scripts/quick_validate.py \
+  pm-market-research/codex-skills/pm-market-research
+```
+
+## Rollback
+
+Each plugin can be removed independently:
 
 ```bash
 codex plugin remove pm-product-discovery
 codex plugin remove pm-product-strategy
 codex plugin remove pm-execution
+codex plugin remove pm-market-research
+codex plugin remove pm-data-analytics
+codex plugin remove pm-go-to-market
+codex plugin remove pm-marketing-growth
+codex plugin remove pm-toolkit
+codex plugin remove pm-ai-shipping
+```
+
+Remove the marketplace only after no installed plugin still depends on it:
+
+```bash
 codex plugin marketplace remove pm-skills
 ```
-
-## Validation
-
-Run from Skillzone root:
-
-```bash
-.venv/bin/python /Users/skleinhens/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py upstream/pm-skills/pm-product-discovery
-.venv/bin/python /Users/skleinhens/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py upstream/pm-skills/pm-product-strategy
-.venv/bin/python /Users/skleinhens/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py upstream/pm-skills/pm-execution
-
-.venv/bin/python /Users/skleinhens/.codex/skills/.system/skill-creator/scripts/quick_validate.py upstream/pm-skills/pm-product-discovery/skills/product-discovery-workflows
-.venv/bin/python /Users/skleinhens/.codex/skills/.system/skill-creator/scripts/quick_validate.py upstream/pm-skills/pm-product-strategy/skills/product-strategy-workflows
-.venv/bin/python /Users/skleinhens/.codex/skills/.system/skill-creator/scripts/quick_validate.py upstream/pm-skills/pm-execution/skills/execution-workflows
-```
-
-Run from `upstream/pm-skills`:
-
-```bash
-python3 validate_plugins.py
-```
-
-Last known result:
-
-```text
-ALL CHECKS PASSED
-```
-
-## Smoke Test
-
-A fresh ephemeral Codex run successfully used:
-
-- `pm-product-discovery:product-discovery-workflows`
-- `pm-product-strategy:product-strategy-workflows`
-- `pm-execution:execution-workflows`
-
-Test shape:
-
-- Product Discovery: ideas, assumptions, risk prioritization, experiment
-- Product Strategy: value proposition, strategic tradeoffs
-- Execution: mini PRD, user stories, pre-mortem risk
-
-No files were written.
-
-Known note: Codex reported that skill descriptions were shortened to fit the skills context budget. This is not an installation failure, but if trigger quality suffers, reduce installed plugin scope or shorten descriptions.
-

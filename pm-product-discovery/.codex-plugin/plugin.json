@@ -1,7 +1,7 @@
 {
   "name": "pm-product-discovery",
-  "version": "2.0.0",
-  "description": "Product discovery skills for ideation, assumption testing, experiments, feature prioritization, interviews, and metrics.",
+  "version": "2.2.0",
+  "description": "Product discovery skills for PMs: ideation, experiments, assumption testing, feature prioritization, and customer interview synthesis.",
   "author": {
     "name": "Paweł Huryn",
     "email": "pawel@productcompass.pm",
@@ -18,11 +18,11 @@
     "assumptions",
     "codex"
   ],
-  "skills": "./skills/",
+  "skills": "./codex-skills/",
   "interface": {
     "displayName": "PM Product Discovery",
-    "shortDescription": "Discovery workflows for ideas, assumptions, experiments, interviews, and metrics.",
-    "longDescription": "Codex-native product discovery skills for moving from product ideas or feature requests through assumption mapping, experiment design, interview preparation, interview synthesis, feature triage, and metrics planning.",
+    "shortDescription": "Explicit product discovery workflows",
+    "longDescription": "Turn product questions into evidence-seeking discovery, assumptions, experiments, interviews, metrics, and prioritization.",
     "developerName": "Paweł Huryn / Steven Kleinhens Codex Port",
     "category": "Productivity",
     "capabilities": [
@@ -32,11 +32,8 @@
     ],
     "websiteURL": "https://www.productcompass.pm",
     "defaultPrompt": [
-      "Run a product discovery cycle for this idea.",
-      "Map assumptions and experiments for this feature.",
-      "Prepare a customer interview script."
+      "Use $pm-product-discovery to run a focused discovery cycle for this product idea."
     ],
     "brandColor": "#2563EB"
   }
 }
-

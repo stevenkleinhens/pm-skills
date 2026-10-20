@@ -1,7 +1,7 @@
 {
   "name": "pm-execution",
-  "version": "2.0.0",
-  "description": "Execution and product management skills for PRDs, OKRs, roadmaps, sprints, pre-mortems, stakeholder maps, user stories, and test scenarios.",
+  "version": "2.2.0",
+  "description": "Execution and product management skills: PRDs, OKRs, roadmaps, sprints, pre-mortems, stakeholder maps, user stories, prioritization frameworks, and more.",
   "author": {
     "name": "Paweł Huryn",
     "email": "pawel@productcompass.pm",
@@ -16,29 +16,30 @@
     "prd",
     "okrs",
     "roadmap",
+    "sprint",
+    "pre-mortem",
+    "user-stories",
+    "backlog",
+    "prioritization",
     "agile",
     "codex"
   ],
-  "skills": "./skills/",
+  "skills": "./codex-skills/",
   "interface": {
     "displayName": "PM Execution",
-    "shortDescription": "Execution workflows for PRDs, stories, roadmaps, OKRs, sprints, risks, and tests.",
-    "longDescription": "Codex-native execution skills for turning product context into PRDs, OKRs, outcome roadmaps, sprint plans, backlog stories, stakeholder maps, pre-mortems, red-team reviews, meeting notes, test scenarios, release notes, and realistic dummy data.",
+    "shortDescription": "Explicit PM execution workflows",
+    "longDescription": "Translate accepted product direction into lean PRDs, backlog items, OKRs, roadmaps, sprints, risk reviews, tests, and release communication.",
     "developerName": "Paweł Huryn / Steven Kleinhens Codex Port",
     "category": "Productivity",
     "capabilities": [
       "Interactive",
       "Analysis",
-      "Planning",
-      "Write"
+      "Planning"
     ],
     "websiteURL": "https://www.productcompass.pm",
     "defaultPrompt": [
-      "Write a PRD from this feature idea.",
-      "Break this PRD into user stories.",
-      "Run a pre-mortem on this launch plan."
+      "Use $pm-execution to turn this accepted product decision into an executable delivery artifact."
     ],
     "brandColor": "#7C3AED"
   }
 }
-

@@ -1,0 +1,43 @@
+{
+  "name": "pm-ai-shipping",
+  "version": "2.2.0",
+  "description": "AI Shipping Kit — for PMs and founders accountable for AI-built code. Document a vibe-coded app, review it for correctness, security and performance defects, and produce a reviewer-ready shipping packet.",
+  "author": {
+    "name": "Paweł Huryn",
+    "email": "pawel@productcompass.pm",
+    "url": "https://www.productcompass.pm"
+  },
+  "homepage": "https://www.productcompass.pm",
+  "repository": "https://github.com/stevenkleinhens/pm-skills",
+  "license": "MIT",
+  "keywords": [
+    "product-management",
+    "ai-shipping",
+    "vibe-coding",
+    "security-audit",
+    "performance-audit",
+    "code-review",
+    "documentation",
+    "owasp",
+    "shipping",
+    "codex"
+  ],
+  "skills": "./codex-skills/",
+  "interface": {
+    "displayName": "PM AI Shipping",
+    "shortDescription": "Explicit AI shipping review workflows",
+    "longDescription": "Make an AI-built codebase reviewable through intent documentation, test-coverage mapping, and change-scoped correctness, security, and performance review.",
+    "developerName": "Paweł Huryn / Steven Kleinhens Codex Port",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Analysis",
+      "Planning"
+    ],
+    "websiteURL": "https://www.productcompass.pm",
+    "defaultPrompt": [
+      "Use $pm-ai-shipping to run a bounded check-only shipping review for this repository."
+    ],
+    "brandColor": "#B91C1C"
+  }
+}

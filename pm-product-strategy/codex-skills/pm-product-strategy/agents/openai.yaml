@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Product Strategy"
+  short_description: "Explicit product strategy workflows"
+  default_prompt: "Use $pm-product-strategy to develop and challenge the strategy for this product."
+policy:
+  allow_implicit_invocation: false

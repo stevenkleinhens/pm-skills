@@ -1,0 +1,6 @@
+interface:
+  display_name: "PM Toolkit"
+  short_description: "Explicit PM utility workflows"
+  default_prompt: "Use $pm-toolkit to run the appropriate focused utility workflow for this material."
+policy:
+  allow_implicit_invocation: false
